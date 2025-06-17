@@ -50,5 +50,10 @@ spring:
           predicates:
           - Path=/users/**
 
+        - id: r9
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+          - Path=/register/**
+
 server:
   port: 8888
