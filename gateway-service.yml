@@ -1,0 +1,54 @@
+spring:
+  cloud:
+    discovery:
+      enabled: true
+
+    gateway:
+      # discovery:
+      #   locator:
+      #     lower-case-service-id: true
+
+      routes:
+        - id: r1
+          uri: lb://INCIDENT-SERVICE
+          predicates:
+          - Path=/api/commentaires/**
+
+        - id: r2
+          uri: lb://INCIDENT-SERVICE
+          predicates:
+          - Path=/api/incidents/**
+
+        - id: r3
+          uri: lb://INCIDENT-SERVICE
+          predicates:
+          - Path=/api/plans-action/**
+
+        - id: r4
+          uri: lb://INCIDENT-SERVICE
+          predicates:
+          - Path=/api/taches/**
+
+
+        - id: r5
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+          - Path=/profile/**
+
+        - id: r6
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+          - Path=/auth/**
+
+        - id: r7
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+          - Path=/public-profile/**
+
+        - id: r8
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+          - Path=/users/**
+
+server:
+  port: 8888

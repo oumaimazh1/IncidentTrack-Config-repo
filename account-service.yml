@@ -1,0 +1,82 @@
+# src/main/resources/application.yml
+spring:
+  cloud:
+    config:
+      enabled: false
+  application:
+    name: account-service
+    upload-dir: "C:/Users/PC/Downloads/IncidentTracker/IncidentTracker/account-service/src/main/resources/user-photos"
+  datasource:
+    password: oumaima
+    url: jdbc:postgresql://localhost:5432/IncidentAuth_db
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+  mail:
+    # pour message localement
+    #host: localhost
+    #port: 1025
+    #username: hello
+    #password: hello
+# pour lier avec gmail
+    host: smtp.gmail.com
+    port: 587
+    username: pportnet@gmail.com
+    password: pfji scip qsrp sspi
+    properties:
+      mail:
+        smtp:
+          ssl:
+            trust: "*"
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
+  web:
+    resources:
+      static-locations: file:${user.profile.photo.upload-dir}/
+  main:
+    allow-circular-references: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+logging:
+  level:
+    org.springframework.web.cors: DEBUG
+    org.springframework.web.filter.CorsFilter: DEBUG
+    org.springframework: DEBUG
+    ma.emsi.accountservice: DEBUG
+    org.springframework.beans.factory: TRACE
+    org.springframework.context.annotation: TRACE
+jwt:
+  secret: TmJLS8mnj7T81MOKdTIy/NZ5NzXl3JCfJNFw8+eK3meb/hcM02FNZApHxRJv+Z75ss2H4u8RjZdxJdFKbfyDog==
+  expiration: 86400000 # Durée de validité du token en millisecondes (ici, 1 jour)
+  header: Authorization
+  prefix: Bearer
+
+user:
+  profile:
+    photo:
+      upload-dir: "C:/Users/moham/OneDrive/Desktop/pfe/IncidentTracker/account-service/src/main/resources/user-photos"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: beans
+
+trip:
+  service:
+    url: http://localhost:8081
+app:
+  frontend:
+    url: http://localhost:5174
