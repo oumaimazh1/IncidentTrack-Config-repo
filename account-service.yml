@@ -80,3 +80,6 @@ trip:
 app:
   frontend:
     url: http://localhost:5174
+
+server:
+  port: 8085
