@@ -5,10 +5,10 @@ spring:
       enabled: false
   application:
     name: account-service
-    upload-dir: "C:/Users/PC/Downloads/IncidentTracker/IncidentTracker/account-service/src/main/resources/user-photos"
+    upload-dir: "C:/Users/PC/Desktop/Gestion-Incident/account-service/src/main/resources/user-photos"
   datasource:
     password: oumaima
-    url: jdbc:postgresql://localhost:5432/IncidentAuth_db
+    url: jdbc:postgresql://localhost:5432/accountdb
     username: postgres
   jpa:
     hibernate:
@@ -66,7 +66,7 @@ jwt:
 user:
   profile:
     photo:
-      upload-dir: "C:/Users/moham/OneDrive/Desktop/pfe/IncidentTracker/account-service/src/main/resources/user-photos"
+      upload-dir: "C:/Users/PC/Desktop/Gestion-Incident/account-service/src/main/resources/user-photos"
 
 management:
   endpoints:
