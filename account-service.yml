@@ -2,13 +2,12 @@
 spring:
   cloud:
     config:
-      enabled: false
-  application:
+      enabled: false  application:
     name: account-service
-    upload-dir: "C:/Users/PC/Desktop/Projet_pfe/backend_pfe/account-service/src/main/resources/user-photos"
+    upload-dir: "C:/Users/moham/OneDrive/Desktop/New folder/backend_pfe/backend_pfe/account-service/src/main/resources/user-photos"
   datasource:
-    password: oumaima
-    url: jdbc:postgresql://localhost:5432/accountdb
+    password: admin123
+    url: jdbc:postgresql://localhost:5432/microservices_db
     username: postgres
   jpa:
     hibernate:
@@ -66,7 +65,7 @@ jwt:
 user:
   profile:
     photo:
-      upload-dir: "C:/Users/PC/Desktop/Projet_pfe/backend_pfe/account-service/src/main/resources/user-photos"
+      upload-dir: "C:/Users/moham/OneDrive/Desktop/New folder/backend_pfe/backend_pfe/account-service/src/main/resources/user-photos"
 
 management:
   endpoints:
