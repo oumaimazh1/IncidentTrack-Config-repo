@@ -64,3 +64,7 @@ jwt:
   expiration: 86400000 # Durée de validité du token en millisecondes (ici, 1 jour)
   header: Authorization
   prefix: Bearer
+
+
+  # filepath: gateway-service/src/main/resources/application.properties
+spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
