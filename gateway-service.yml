@@ -36,7 +36,7 @@ spring:
           - Path=/profile/**
 
         - id: r6
-          uri: lb://ACCOUNT-SERVICE
+          uri: lb://GATEWAY-SERVICE
           predicates:
           - Path=/auth/**
 
