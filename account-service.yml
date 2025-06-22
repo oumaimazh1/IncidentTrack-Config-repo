@@ -2,7 +2,8 @@
 spring:
   cloud:
     config:
-      enabled: false  application:
+      enabled: false
+  application:
     name: account-service
     upload-dir: "C:/Users/moham/OneDrive/Desktop/New folder/backend_pfe/backend_pfe/account-service/src/main/resources/user-photos"
   datasource:
