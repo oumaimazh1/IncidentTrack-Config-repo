@@ -1,54 +1,69 @@
 spring:
-  application:
-    name: gateway-service
   cloud:
     discovery:
       enabled: true
+
     gateway:
+      # discovery:
+      #   locator:
+      #     lower-case-service-id: true
+
       routes:
-        - id: incident-commentaires
+        - id: r1
           uri: lb://INCIDENT-SERVICE
           predicates:
-            - Path=/api/commentaires/**
-        - id: incident-incidents
+          - Path=/api/commentaires/**
+
+        - id: r2
           uri: lb://INCIDENT-SERVICE
           predicates:
-            - Path=/api/incidents/**
-        - id: incident-plans-action
+          - Path=/api/incidents/**
+
+        - id: r3
           uri: lb://INCIDENT-SERVICE
           predicates:
-            - Path=/api/plans-action/**
-        - id: incident-taches
+          - Path=/api/plans-action/**
+
+        - id: r4
           uri: lb://INCIDENT-SERVICE
           predicates:
-            - Path=/api/taches/**
-        - id: account-profile
+          - Path=/api/taches/**
+
+
+        - id: r5
           uri: lb://ACCOUNT-SERVICE
           predicates:
-            - Path=/profile/**
-        - id: gateway-auth
+          - Path=/profile/**
+
+        - id: r6
           uri: lb://GATEWAY-SERVICE
           predicates:
-            - Path=/auth/**
-        - id: account-public-profile
+          - Path=/auth/**
+
+        - id: r7
           uri: lb://ACCOUNT-SERVICE
           predicates:
-            - Path=/public-profile/**
-        - id: account-users
+          - Path=/public-profile/**
+
+        - id: r8
           uri: lb://ACCOUNT-SERVICE
           predicates:
-            - Path=/users/**
-        - id: account-register
+          - Path=/users/**
+
+        - id: r9
           uri: lb://ACCOUNT-SERVICE
           predicates:
-            - Path=/register/**
+          - Path=/register/**
+
 server:
   port: 8888
+
+
 jwt:
   secret: TmJLS8mnj7T81MOKdTIy/NZ5NzXl3JCfJNFw8+eK3meb/hcM02FNZApHxRJv+Z75ss2H4u8RjZdxJdFKbfyDog==
   expiration: 86400000 # Durée de validité du token en millisecondes (ici, 1 jour)
   header: Authorization
   prefix: Bearer
-app:
-  account-service:
-    url: http://ACCOUNT-SERVICE
+
+
+  # filepath: gateway-service/src/main/resources/application.properties
