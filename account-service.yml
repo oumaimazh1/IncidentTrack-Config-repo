@@ -57,11 +57,7 @@ logging:
     ma.emsi.accountservice: DEBUG
     org.springframework.beans.factory: TRACE
     org.springframework.context.annotation: TRACE
-jwt:
-  secret: TmJLS8mnj7T81MOKdTIy/NZ5NzXl3JCfJNFw8+eK3meb/hcM02FNZApHxRJv+Z75ss2H4u8RjZdxJdFKbfyDog==
-  expiration: 86400000 # Durée de validité du token en millisecondes (ici, 1 jour)
-  header: Authorization
-  prefix: Bearer
+
 
 user:
   profile:
