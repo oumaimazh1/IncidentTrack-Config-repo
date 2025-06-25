@@ -1,15 +1,18 @@
-# src/main/resources/application.yml
+# Configuration pour Account Service
 spring:
-  cloud:
-    config:
-      enabled: false
   application:
     name: account-service
-    upload-dir: "C:/Users/PC/Desktop/Projet_pfe/backend_pfe/account-service/src/main/resources/user-photos"
   datasource:
-    password: oumaima
-    url: jdbc:postgresql://localhost:5432/accountdb
+    url: jdbc:postgresql://127.0.0.1:5432/microservices_db
     username: postgres
+    password: admin123
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 300000
+      max-lifetime: 600000
   jpa:
     hibernate:
       ddl-auto: update
@@ -19,12 +22,6 @@ spring:
         format_sql: true
     show-sql: true
   mail:
-    # pour message localement
-    #host: localhost
-    #port: 1025
-    #username: hello
-    #password: hello
-# pour lier avec gmail
     host: smtp.gmail.com
     port: 587
     username: pportnet@gmail.com
@@ -45,41 +42,26 @@ spring:
       static-locations: file:${user.profile.photo.upload-dir}/
   main:
     allow-circular-references: true
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-logging:
-  level:
-    org.springframework.web.cors: DEBUG
-    org.springframework.web.filter.CorsFilter: DEBUG
-    org.springframework: DEBUG
-    ma.emsi.accountservice: DEBUG
-    org.springframework.beans.factory: TRACE
-    org.springframework.context.annotation: TRACE
-jwt:
-  secret: TmJLS8mnj7T81MOKdTIy/NZ5NzXl3JCfJNFw8+eK3meb/hcM02FNZApHxRJv+Z75ss2H4u8RjZdxJdFKbfyDog==
-  expiration: 86400000 # Durée de validité du token en millisecondes (ici, 1 jour)
-  header: Authorization
-  prefix: Bearer
 
+server:
+  port: 8085
+
+# Configuration spécifique Account Service
 user:
   profile:
     photo:
-      upload-dir: "C:/Users/PC/Desktop/Projet_pfe/backend_pfe/account-service/src/main/resources/user-photos"
+      upload-dir: "C:/Users/moham/OneDrive/Desktop/New folder/backend_pfe/backend_pfe/account-service/src/main/resources/user-photos"
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: beans
-
-trip:
-  service:
-    url: http://localhost:8081
 app:
   frontend:
     url: http://localhost:5174
 
-server:
-  port: 8085
+# Configuration Eureka - hérite de application.yml avec override
+eureka:
+  instance:
+    prefer-ip-address: true
+
+logging:
+  level:
+    com.portnet.accountservice: DEBUG
+    org.springframework.security: DEBUG

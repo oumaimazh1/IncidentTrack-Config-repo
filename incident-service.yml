@@ -1,9 +1,16 @@
+# Configuration pour Incident Service
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/incidentsdb
+    url: jdbc:postgresql://127.0.0.1:5432/incident_service_db
     username: postgres
-    password: oumaima
+    password: admin123
     driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 300000
+      max-lifetime: 600000
   jpa:
     hibernate:
       ddl-auto: update
@@ -18,11 +25,12 @@ spring:
 server:
   port: 8082
 
-jwt:
-  secret: TmJLS8mnj7T81MOKdTIy/NZ5NzXl3JCfJNFw8+eK3meb/hcM02FNZApHxRJv+Z75ss2H4u8RjZdxJdFKbfyDog==
-  #c2VjcmV0S2V5Rm9ySldUMTIzNDU2Nzg5MDEyMzQ1Ng==  # secretKeyForJWT1234567890123456 en Base64
-  expiration: 86400000  # 1 jour en ms
+# Configuration Eureka - hérite de application.yml
+eureka:
+  instance:
+    prefer-ip-address: true
 
 logging:
   level:
     org.springframework.security: DEBUG
+    com.example.incidentservice: DEBUG
