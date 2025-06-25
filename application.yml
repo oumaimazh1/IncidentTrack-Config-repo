@@ -1,0 +1,51 @@
+# Configuration commune pour tous les services
+spring:
+  profiles:
+    active: default
+  cloud:
+    config:
+      enabled: true
+      discovery:
+        enabled: false
+        service-id: config-server
+
+# Configuration Eureka commune
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+
+# Configuration JWT commune
+jwt:
+  secret: TmJLS8mnj7T81MOKdTIy/NZ5NzXl3JCfJNFw8+eK3meb/hcM02FNZApHxRJv+Z75ss2H4u8RjZdxJdFKbfyDog==
+  expiration: 86400000 # 1 jour
+  header: Authorization
+  prefix: Bearer
+
+# Configuration Management Endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,env,metrics
+  endpoint:
+    health:
+      show-details: always
+
+# Configuration Logging
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.cloud: DEBUG
+    com.portnet: DEBUG
+    com.example: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
