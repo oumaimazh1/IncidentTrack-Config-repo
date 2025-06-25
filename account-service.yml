@@ -43,25 +43,22 @@ spring:
   main:
     allow-circular-references: true
 
+# Configuration spécifique Account Service
 server:
   port: 8085
 
-# Configuration spécifique Account Service
+# Configuration des uploads - Path corrigé
 user:
   profile:
     photo:
       upload-dir: "C:/Users/moham/OneDrive/Desktop/New folder/backend_pfe/backend_pfe/account-service/src/main/resources/user-photos"
 
+# Configuration Frontend
 app:
   frontend:
     url: http://localhost:5174
 
-# Configuration Eureka - hérite de application.yml avec override
-eureka:
-  instance:
-    prefer-ip-address: true
-
+# Configuration Logging spécifique
 logging:
   level:
     com.portnet.accountservice: DEBUG
-    org.springframework.security: DEBUG

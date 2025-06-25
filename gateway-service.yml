@@ -64,6 +64,7 @@ eureka:
   instance:
     prefer-ip-address: true
 
+# Configuration Logging spécifique
 logging:
   level:
     com.example.gatewayservice: DEBUG

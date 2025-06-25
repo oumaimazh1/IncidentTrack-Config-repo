@@ -30,6 +30,11 @@ eureka:
   instance:
     prefer-ip-address: true
 
+# Configuration JWT - gérée centralement par Gateway
+jwt:
+  secret: TmJLS8mnj7T81MOKdTIy/NZ5NzXl3JCfJNFw8+eK3meb/hcM02FNZApHxRJv+Z75ss2H4u8RjZdxJdFKbfyDog==
+  expiration: 86400000  # 1 jour en ms
+
 logging:
   level:
     org.springframework.security: DEBUG

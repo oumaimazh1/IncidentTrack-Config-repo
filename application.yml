@@ -43,10 +43,9 @@ management:
 logging:
   level:
     org.springframework.security: DEBUG
-    org.springframework.cloud: INFO
+    org.springframework.cloud: DEBUG
     com.portnet: DEBUG
     com.example: DEBUG
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
-    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
