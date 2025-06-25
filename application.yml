@@ -9,7 +9,7 @@ spring:
         enabled: false
         service-id: config-server
 
-# Configuration Eureka commune (peut être overridée par chaque service)
+# Configuration Eureka commune
 eureka:
   client:
     service-url:
@@ -29,7 +29,7 @@ jwt:
   header: Authorization
   prefix: Bearer
 
-# Configuration Management Endpoints commune
+# Configuration Management Endpoints
 management:
   endpoints:
     web:
@@ -39,7 +39,7 @@ management:
     health:
       show-details: always
 
-# Configuration Logging commune
+# Configuration Logging
 logging:
   level:
     org.springframework.security: DEBUG
@@ -47,5 +47,5 @@ logging:
     com.portnet: DEBUG
     com.example: DEBUG
   pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

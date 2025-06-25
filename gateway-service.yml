@@ -1,71 +1,70 @@
-# Configuration pour Gateway Service
 spring:
   cloud:
     discovery:
       enabled: true
+
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
+      # discovery:
+      #   locator:
+      #     lower-case-service-id: true
+
       routes:
-        # Routes pour Incident Service
-        - id: incident-service-commentaires
-          uri: lb://incident-service
+        - id: r1
+          uri: lb://INCIDENT-SERVICE
           predicates:
-            - Path=/api/commentaires/**
+          - Path=/api/commentaires/**
 
-        - id: incident-service-incidents
-          uri: lb://incident-service
+        - id: r2
+          uri: lb://INCIDENT-SERVICE
           predicates:
-            - Path=/api/incidents/**
+          - Path=/api/incidents/**
 
-        - id: incident-service-plans-action
-          uri: lb://incident-service
+        - id: r3
+          uri: lb://INCIDENT-SERVICE
           predicates:
-            - Path=/api/plans-action/**
+          - Path=/api/plans-action/**
 
-        - id: incident-service-taches
-          uri: lb://incident-service
+        - id: r4
+          uri: lb://INCIDENT-SERVICE
           predicates:
-            - Path=/api/taches/**
+          - Path=/api/taches/**
 
-        # Routes pour Account Service
-        - id: account-service-auth
-          uri: lb://account-service
-          predicates:
-            - Path=/auth/**
 
-        - id: account-service-profile
-          uri: lb://account-service
+        - id: r5
+          uri: lb://ACCOUNT-SERVICE
           predicates:
-            - Path=/profile/**
+          - Path=/profile/**
 
-        - id: account-service-users
-          uri: lb://account-service
+        - id: r6
+          uri: lb://ACCOUNT-SERVICE
           predicates:
-            - Path=/users/**
+          - Path=/auth/**
 
-        - id: account-service-admin
-          uri: lb://account-service
+        - id: r7
+          uri: lb://ACCOUNT-SERVICE
           predicates:
-            - Path=/admin/**
+          - Path=/public-profile/**
 
-        - id: account-service-membres
-          uri: lb://account-service
+        - id: r8
+          uri: lb://ACCOUNT-SERVICE
           predicates:
-            - Path=/api/membres/**
+          - Path=/users/**
+
+        - id: r9
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+          - Path=/register/**
 
 server:
   port: 8888
 
-# Configuration Eureka - hérite de application.yml
-eureka:
-  instance:
-    prefer-ip-address: true
 
-# Configuration Logging spécifique
-logging:
-  level:
-    com.example.gatewayservice: DEBUG
-    org.springframework.cloud.gateway: DEBUG
+jwt:
+  secret: TmJLS8mnj7T81MOKdTIy/NZ5NzXl3JCfJNFw8+eK3meb/hcM02FNZApHxRJv+Z75ss2H4u8RjZdxJdFKbfyDog==
+  expiration: 86400000 # Durée de validité du token en millisecondes (ici, 1 jour)
+  header: Authorization
+  prefix: Bearer
+
+
+  # filepath: gateway-service/src/main/resources/application.properties
+spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
