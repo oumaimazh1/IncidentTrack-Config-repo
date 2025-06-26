@@ -2,18 +2,16 @@ server:
   port: 8085
 
 spring:
+  cloud:
+    config:
+      enabled: false
+  application:
+    name: account-service
+    upload-dir: "C:/Users/moham/OneDrive/Desktop/New folder/backend_pfe/backend_pfe/account-service/src/main/resources/user-photos"
   datasource:
-    url: jdbc:postgresql://127.0.0.1:5432/microservices_db
-    username: postgres
     password: admin123
-    driver-class-name: org.postgresql.Driver
-    hikari:
-      connection-timeout: 60000
-      maximum-pool-size: 10
-      minimum-idle: 5
-      idle-timeout: 300000
-      max-lifetime: 600000
-
+    url: jdbc:postgresql://localhost:5432/microservices_db
+    username: postgres
   jpa:
     hibernate:
       ddl-auto: update
@@ -56,7 +54,13 @@ jwt:
 user:
   profile:
     photo:
-      upload-dir: C:/Users/moham/OneDrive/Desktop/New folder/backend_pfe/backend_pfe/account-service/src/main/resources/user-photos
+      upload-dir: "C:/Users/moham/OneDrive/Desktop/New folder/backend_pfe/backend_pfe/account-service/src/main/resources/user-photos"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: beans
 
 trip:
   service:
