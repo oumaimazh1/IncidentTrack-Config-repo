@@ -2,16 +2,21 @@ server:
   port: 8085
 
 spring:
-  cloud:
-    config:
-      enabled: false
   application:
     name: account-service
-    upload-dir: "C:/Users/moham/OneDrive/Desktop/New folder/backend_pfe/backend_pfe/account-service/src/main/resources/user-photos"
+
   datasource:
-    password: admin123
-    url: jdbc:postgresql://localhost:5432/microservices_db
+    url: jdbc:postgresql://127.0.0.1:5432/microservices_db
     username: postgres
+    password: admin123
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 300000
+      max-lifetime: 600000
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -29,11 +34,11 @@ spring:
     properties:
       mail:
         smtp:
-          ssl:
-            trust: "*"
           auth: true
           starttls:
             enable: true
+          ssl:
+            trust: "*"
           connectiontimeout: 5000
           timeout: 3000
           writetimeout: 5000
@@ -45,30 +50,34 @@ spring:
   main:
     allow-circular-references: true
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+
+user:
+  profile:
+    photo:
+      upload-dir: C:/Users/moham/OneDrive/Desktop/New folder/backend_pfe/backend_pfe/account-service/src/main/resources/user-photos
+
 jwt:
   secret: TmJLS8mnj7T81MOKdTIy/NZ5NzXl3JCfJNFw8+eK3meb/hcM02FNZApHxRJv+Z75ss2H4u8RjZdxJdFKbfyDog==
   expiration: 86400000
   header: Authorization
   prefix: Bearer
 
-user:
-  profile:
-    photo:
-      upload-dir: "C:/Users/moham/OneDrive/Desktop/New folder/backend_pfe/backend_pfe/account-service/src/main/resources/user-photos"
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: beans
-
-trip:
-  service:
-    url: http://localhost:8081
-
 app:
   frontend:
     url: http://localhost:5174
+
+logging:
+  level:
+    com.portnet.accountservice: DEBUG
+    org.springframework.security: DEBUG
 
 management:
   endpoints:
@@ -78,12 +87,3 @@ management:
   endpoint:
     health:
       show-details: always
-
-logging:
-  level:
-    org.springframework.web.cors: DEBUG
-    org.springframework.web.filter.CorsFilter: DEBUG
-    org.springframework: DEBUG
-    ma.emsi.accountservice: DEBUG
-    org.springframework.beans.factory: TRACE
-    org.springframework.context.annotation: TRACE
