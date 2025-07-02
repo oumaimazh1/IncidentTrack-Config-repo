@@ -9,62 +9,123 @@ spring:
       #     lower-case-service-id: true
 
       routes:
-        - id: r1
+        # ==========================================
+        # INCIDENT-SERVICE ROUTES
+        # ==========================================
+        - id: incident-commentaires
           uri: lb://INCIDENT-SERVICE
           predicates:
           - Path=/api/commentaires/**
 
-        - id: r2
+        - id: incident-incidents
           uri: lb://INCIDENT-SERVICE
           predicates:
           - Path=/api/incidents/**
 
-        - id: r3
+        - id: incident-plans-action
           uri: lb://INCIDENT-SERVICE
           predicates:
           - Path=/api/plans-action/**
 
-        - id: r4
+        - id: incident-taches
           uri: lb://INCIDENT-SERVICE
           predicates:
           - Path=/api/taches/**
 
-
-        - id: r5
-          uri: lb://ACCOUNT-SERVICE
-          predicates:
-          - Path=/profile/**
-
-        - id: r6
+        # ==========================================
+        # ACCOUNT-SERVICE ROUTES - AUTH & PROFILE
+        # ==========================================
+        - id: account-auth
           uri: lb://ACCOUNT-SERVICE
           predicates:
           - Path=/auth/**
 
-        - id: r7
+        - id: account-profile
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+          - Path=/profile/**
+
+        - id: account-public-profile
           uri: lb://ACCOUNT-SERVICE
           predicates:
           - Path=/public-profile/**
 
-        - id: r8
+        - id: account-users
           uri: lb://ACCOUNT-SERVICE
           predicates:
           - Path=/users/**
 
-        - id: r9
+        - id: account-register
           uri: lb://ACCOUNT-SERVICE
           predicates:
           - Path=/register/**
 
+        # ==========================================
+        # ACCOUNT-SERVICE ROUTES - API ENTITIES
+        # ==========================================
+        - id: account-entites
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+          - Path=/api/entites/**
+
+        - id: account-entite-responsables
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+          - Path=/api/entite-responsables/**
+
+        - id: account-membres
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+          - Path=/api/membres/**
+
+        # ==========================================
+        # ACCOUNT-SERVICE ROUTES - ADMIN
+        # ==========================================
+        - id: account-admin
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+          - Path=/admin/**
+
+      # Configuration globale pour CORS
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+            - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: false
+
 server:
   port: 8888
 
-
+# Configuration JWT
 jwt:
   secret: TmJLS8mnj7T81MOKdTIy/NZ5NzXl3JCfJNFw8+eK3meb/hcM02FNZApHxRJv+Z75ss2H4u8RjZdxJdFKbfyDog==
   expiration: 86400000 # Durée de validité du token en millisecondes (ici, 1 jour)
   header: Authorization
   prefix: Bearer
 
+# Configuration Spring Boot
+spring.autoconfigure.exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 
-  # filepath: gateway-service/src/main/resources/application.properties
-spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+# Configuration de logging pour debug
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web.reactive: DEBUG
+    root: INFO
+
+# Configuration management endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+  endpoint:
+    gateway:
+      enabled: true
